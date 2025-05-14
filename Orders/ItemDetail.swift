@@ -30,14 +30,26 @@ struct ItemDetail: View {
                 order.add(item: item)
             }
             .buttonStyle(.borderedProminent)
+            .font(.headline)
 
             Spacer()
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(item.name)
+        .navigationBarItems(trailing: favoriteButton)
     }
 }
 
+extension ItemDetail {
+    var favoriteButton: some View {
+        Button {
+            order.addToFavorite(item: item)
+        } label: {
+            Label("Order", systemImage: "star.fill")
+        }
+
+    }
+}
 
 struct ItemDetail_Previews: PreviewProvider {
     static var previews: some View {

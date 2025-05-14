@@ -10,7 +10,8 @@ import SwiftUI
 
 class OrdersViewModel: ObservableObject {
     @Published var items = [MenuItem]()
-
+    @Published var favoriteItems = [MenuItem]()
+    
     var total: Int {
         if items.count > 0 {
             return items.reduce(0) { $0 + $1.price }
@@ -21,6 +22,10 @@ class OrdersViewModel: ObservableObject {
 
     func add(item: MenuItem) {
         items.append(item)
+    }
+    
+    func addToFavorite(item: MenuItem) {
+        favoriteItems.append(item)
     }
 
     func remove(item: MenuItem) {
